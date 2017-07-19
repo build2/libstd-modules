@@ -2,7 +2,17 @@
 # copyright : Copyright (c) 2014-2017 Code Synthesis Ltd
 # license   : MIT; see accompanying LICENSE file
 
-import libs = libstd-modules%liba{std-modules}
+if! $cxx.features.modules
+{
+  # List sources as files so that we can prepare a distribution with any
+  # compiler.
+  #
+  ./: cxx{*} file{test.out}
+}
+else
+{
+  import libs = libstd-modules%liba{std-modules}
 
-exe{driver}: cxx{driver} $libs
-exe{driver}: test.output = test.out
+  exe{driver}: cxx{driver} $libs
+  exe{driver}: test.output = test.out
+}

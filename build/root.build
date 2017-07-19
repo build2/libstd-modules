@@ -6,7 +6,7 @@ cxx.std = experimental
 
 using cxx
 
-assert $cxx.features.modules 'c++ compiler does not support modules'
+#assert $cxx.features.modules 'c++ compiler does not support modules'
 
 mxx{*}: extension = mxx
 cxx{*}: extension = cxx
