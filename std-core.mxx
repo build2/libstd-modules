@@ -1,0 +1,41 @@
+// file      : std-core.mxx -*- C++ -*-
+// copyright : Copyright (c) 2014-2017 Code Synthesis Ltd
+// license   : MIT; see accompanying LICENSE file
+
+export module std.core;
+
+export
+{
+#include <cstddef>
+#include <cstdint>
+#include <cstdlib>
+
+#include <utility>
+
+#include <exception>
+#include <stdexcept>
+}
+
+export
+{
+#include <iterator>
+#include <algorithm>
+
+#include <string>
+#include <cstring> // @@ Not in the proposal.
+
+#include <vector>
+}
+
+#if defined(_MSC_VER) || defined(__clang__)
+export
+{
+#include <cctype>
+#include <iosfwd>
+#include <istream>
+#include <ostream>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+}
+#endif

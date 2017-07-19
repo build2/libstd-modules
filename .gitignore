@@ -1,0 +1,18 @@
+# Compiler/linker output.
+#
+*.d
+*.ii
+*.o
+*.obj
+*.nms
+*.pcm
+*.ifc
+*.so
+*.dll
+*.a
+*.lib
+*.exp
+*.exe
+*.exe.dlls/
+*.exe.manifest
+

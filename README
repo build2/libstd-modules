@@ -1,0 +1,15 @@
+This package contains the module interface units for the standard C++ library
+(approximately) as proposed in P0581R0. It is maintained as part of the build2
+project:
+
+https://build2.org/
+
+See the NEWS file for the user-visible changes from the previous release.
+
+See the LICENSE file for the distribution conditions.
+
+See the INSTALL file for the prerequisites and installation instructions.
+
+Send questions, bug reports, or any other feedback to the users@build2.org
+mailing list. You can post without subscribing. See https://lists.build2.org
+for searchable archives, posting guidelines, etc.
