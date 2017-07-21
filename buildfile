@@ -48,7 +48,7 @@ else
     #
     # @@ Currently VC looks in Release regardless of /MD or /MDd.
     #
-    dir  = release/
+    dir  = Release/
     core = $dir/std.core.ifc
     io   = $dir/std.io.ifc
 
