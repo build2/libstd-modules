@@ -8,6 +8,7 @@ description-file: README
 changes-file: NEWS
 url: https://build2.org
 email: users@build2.org
+src-url: https://git.build2.org/cgit/libstd-modules/tree/
 build-email: builds@build2.org
 build-exclude: *-msvc_15u0* ; Broken C++ modules support
 build-include: *-msvc_15*
