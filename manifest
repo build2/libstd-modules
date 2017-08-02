@@ -7,8 +7,9 @@ tags: c++, modules, standard, library, std.core, std.io
 description-file: README
 changes-file: NEWS
 url: https://build2.org
-email: users@build2.org
+doc-url: https://build2.org/doc.xhtml
 src-url: https://git.build2.org/cgit/libstd-modules/tree/
+email: users@build2.org
 build-email: builds@build2.org
 build-exclude: *-msvc_15u0* ; Broken C++ modules support
 build-include: *-msvc_15*
