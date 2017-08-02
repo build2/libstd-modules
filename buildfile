@@ -58,6 +58,10 @@ else
     #
     liba{std-modules}: $dir/liba{std}
     $dir/liba{std}: cxx{dummy.cxx}
+
+    # @@ Doesn't work if installed so we don't bother installing it.
+    #
+    $dir/liba{std}: install = false
   }
 
   # @@ TMP: use utility library instead?
@@ -77,4 +81,8 @@ else
 
   mxx{std-core}@./: cc.module_name = std.core
   mxx{std-io}@./:   cc.module_name = std.io
+
+  # Install into the libstd-modules/ subdirectory of, say, /usr/include/.
+  #
+  mxx{*}: install = include/$project/
 }
