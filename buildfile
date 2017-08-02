@@ -82,6 +82,8 @@ else
   mxx{std-core}@./: cc.module_name = std.core
   mxx{std-io}@./:   cc.module_name = std.io
 
+  ./: mxx{std-core std-io} # @@ install
+
   # Install into the libstd-modules/ subdirectory of, say, /usr/include/.
   #
   mxx{*}: install = include/$project/
