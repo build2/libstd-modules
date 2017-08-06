@@ -13,7 +13,8 @@ email: users@build2.org
 build-email: builds@build2.org
 build-exclude: *-msvc_15u0* ; Broken C++ modules support
 build-include: *-msvc_15*
-build-include: *-clang_5.0*
+build-include: *-clang_5*
+build-include: *-clang_6*
 build-exclude: * ; Requires C++ modules support
 requires: c++20
 depends: * build2 >= 0.6.0-
