@@ -7,4 +7,4 @@ $out_root/:
   include buildfile
 }
 
-export $out_root/liba{std-modules}
+export $($out_root/:export_target)

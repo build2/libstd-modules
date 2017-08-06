@@ -40,6 +40,10 @@ else
     #
     core = std.core.pcm
     io   = std.io.pcm
+
+    liba{std-modules}: bmia{$core $io}
+
+    export_target = $out_root/liba{std-modules}
   }
   elif ($cxx.id.type == 'msvc')
   {
@@ -54,14 +58,20 @@ else
 
     bmia{$core $io}: fsdir{$dir}
 
-    # VC expects to find std.lib next to the .ifc's. Make it a dummy one.
+    # VC expects to find std.lib next to the .ifc's. Make it the real one
+    # while std-modules -- a dummy.
     #
-    liba{std-modules}: $dir/liba{std}
-    $dir/liba{std}: cxx{dummy.cxx}
+    ./: $dir/liba{std}
+    $dir/liba{std}: bmia{$core $io}
+    liba{std-modules}: cxx{dummy.cxx}
 
-    # @@ Doesn't work if installed so we don't bother installing it.
+    # @@ Doesn't work if installed so we don't bother installing it. But we
+    #    still install dummy std-modules; the idea is to link a dummy and
+    #    (try) to use Microsoft-shipped .ifc's.
     #
     $dir/liba{std}: install = false
+
+    export_target = $out_root/$dir/liba{std}
   }
 
   # @@ TMP: use utility library instead?
@@ -73,8 +83,6 @@ else
   #
   if ($cxx.target.class != "windows")
     cxx.libs += -lpthread
-
-  liba{std-modules}: bmia{$core $io}
 
   bmia{$core}: mxx{std-core}
   bmia{$io}:   mxx{std-io} bmia{$core}
