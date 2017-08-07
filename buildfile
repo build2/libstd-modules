@@ -69,7 +69,7 @@ else
 
     # Include std-modules to trigger install.
     #
-    export_target = $out_root/$dir/liba{std} liba{std-modules}
+    export_target = $out_root/$dir/liba{std} $out_root/liba{std-modules}
   }
 
   # @@ TMP: use utility library instead?
