@@ -2,6 +2,28 @@
 // copyright : Copyright (c) 2014-2017 Code Synthesis Ltd
 // license   : MIT; see accompanying LICENSE file
 
+// For some standard library implementations we need to pre-include certain
+// headers to prevent their exporting. And to detect a standard library we
+// need to include a certain header first.
+//
+#if defined(__clang__)
+#  if   __has_include(<__config>)         // libc++    _LIBCPP_VERSION
+#    include <__config>
+#  elif __has_include(<bits/c++config.h>) // libstdc++ __GLIBCXX__
+#    include <bits/c++config.h>
+#  endif
+#elif defined(__GNUC__)
+#  include <bits/c++config.h>             // libstdc++ __GLIBCXX__
+#endif
+
+#if   defined(_MSC_VER)
+#elif defined(__GLIBCXX__)
+#  include <ext/atomicity.h>   // Names with internal linkage.
+#elif defined(_LIBCPP_VERSION)
+#else
+#  error unknown standard library implementation
+#endif
+
 export module std.core;
 
 export
