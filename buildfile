@@ -77,7 +77,7 @@ else
   if ($cxx.target.class == 'linux' || $cxx.target.class == 'bsd')
     cxx.coptions += -fPIC
 
-  # Clang 5.0 with libc++ (sometimes) needs it -- go figure.
+  # Clang with libc++ (sometimes) needs it -- go figure.
   #
   if ($cxx.target.class != "windows")
     cxx.libs += -lpthread
@@ -87,8 +87,6 @@ else
 
   mxx{std-core}@./: cc.module_name = std.core
   mxx{std-io}@./:   cc.module_name = std.io
-
-  ./: mxx{std-core std-io} # @@ install
 
   # Install into the libstd-modules/ subdirectory of, say, /usr/include/.
   #
