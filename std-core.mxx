@@ -29,10 +29,23 @@ export module std.core;
 export
 {
 #include <cstddef>
+
+  // These are defined in <bits/c++config.h> which we have pre-included.
+  //
+#ifdef __GLIBCXX__
+  namespace std
+  {
+    typedef std::size_t size_t;
+    typedef std::ptrdiff_t ptrdiff_t;
+    typedef std::nullptr_t nullptr_t;
+  }
+#endif
+
 #include <cstdint>
 #include <cstdlib>
 
 #include <utility>
+#include <type_traits>
 
 #include <exception>
 #include <stdexcept>
@@ -46,7 +59,12 @@ export
 #include <string>
 #include <cstring> // @@ Not in the proposal.
 
+#include <array>
 #include <vector>
+#include <set>
+#include <map>
+#include <unordered_set>
+#include <unordered_map>
 }
 
 #if defined(_MSC_VER) || defined(__clang__)
@@ -56,8 +74,27 @@ export
 #include <iosfwd>
 #include <istream>
 #include <ostream>
-#include <iostream>
 #include <sstream>
 #include <fstream>
+
+#ifndef __GLIBCXX__
+#  include <iostream>
+#else
+// Contents of <iostream> without static __ioinit.
+//
+namespace std _GLIBCXX_VISIBILITY(default)
+{
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+  extern istream cin;
+  extern ostream cout;
+  extern ostream cerr;
+  extern ostream clog;
+
+  //static ios_base::Init __ioinit;
+_GLIBCXX_END_NAMESPACE_VERSION
 }
+#endif
+}
+
+
 #endif
