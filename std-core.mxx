@@ -3,44 +3,43 @@
 // license   : MIT; see accompanying LICENSE file
 
 // For some standard library implementations we need to pre-include certain
-// headers to prevent their exporting. And to detect a standard library we
-// need to include a certain header first.
-//
-#if defined(__clang__)
-#  if   __has_include(<__config>)         // libc++    _LIBCPP_VERSION
-#    include <__config>
-#  elif __has_include(<bits/c++config.h>) // libstdc++ __GLIBCXX__
-#    include <bits/c++config.h>
-#  endif
-#elif defined(__GNUC__)
-#  include <bits/c++config.h>             // libstdc++ __GLIBCXX__
-#endif
+// headers to prevent their exporting.
+
+#include "std-detect.hxx"
 
 #if   defined(_MSC_VER)
+/*
+#  include <io.h>
+#  include <time.h>
+#  include <stdlib.h>
+#  include <string.h>
+#  include <locale.h> // struct tm;
+*/
 #elif defined(__GLIBCXX__)
-#  include <ext/atomicity.h>   // Names with internal linkage.
+#  include <time.h>
+#  include <errno.h>
+#  include <strings.h>
+#  include <sys/types.h>
+#  include <ext/atomicity.h>      // Names with internal linkage.
 #elif defined(_LIBCPP_VERSION)
-#else
-#  error unknown standard library implementation
 #endif
 
 export module std.core;
 
 export
 {
-#include <cstddef>
-
   // These are defined in <bits/c++config.h> which we have pre-included.
   //
 #ifdef __GLIBCXX__
   namespace std
   {
-    typedef std::size_t size_t;
-    typedef std::ptrdiff_t ptrdiff_t;
-    typedef std::nullptr_t nullptr_t;
+    typedef __SIZE_TYPE__         size_t;
+    typedef __PTRDIFF_TYPE__      ptrdiff_t;
+    typedef decltype(nullptr)     nullptr_t;
   }
 #endif
 
+#include <cstddef>
 #include <cstdint>
 #include <cstdlib>
 
@@ -49,12 +48,23 @@ export
 
 #include <exception>
 #include <stdexcept>
+#include <system_error>
+
+#include <new>
+#include <memory>
+
+#include <limits>
+#include <ctime>
+#include <atomic>
+#include <chrono>
+#include <bitset>
 }
 
 export
 {
 #include <iterator>
 #include <algorithm>
+#include <functional>
 
 #include <string>
 #include <cstring> // @@ Not in the proposal.
@@ -65,13 +75,18 @@ export
 #include <map>
 #include <unordered_set>
 #include <unordered_map>
+#include <stack>
 }
 
 #if defined(_MSC_VER) || defined(__clang__)
 export
 {
 #include <cctype>
+#include <locale>
+#include <clocale>
+
 #include <iosfwd>
+#include <iomanip>
 #include <istream>
 #include <ostream>
 #include <sstream>
@@ -95,6 +110,14 @@ _GLIBCXX_END_NAMESPACE_VERSION
 }
 #endif
 }
-
-
 #endif
+
+// std.threading
+//
+export
+{
+#include <mutex>
+#include <shared_mutex>
+#include <condition_variable>
+#include <thread>
+}
