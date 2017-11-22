@@ -18,9 +18,12 @@
 #elif defined(__GLIBCXX__)
 #  include <time.h>
 #  include <errno.h>
+#  include <wchar.h>          // struct tm forward declaration.
+#  include <stdio.h>
+#  include <string.h>
 #  include <strings.h>
 #  include <sys/types.h>
-#  include <ext/atomicity.h>      // Names with internal linkage.
+#  include <ext/atomicity.h>  // Names with internal linkage.
 #elif defined(_LIBCPP_VERSION)
 #endif
 

@@ -38,6 +38,8 @@
 #  define _GLIBCXX_STD_FUNCTION_H  // <bits/std_function.h>
 #  define _ALIGNED_BUFFER_H        // <ext/aligned_buffer.h>
 
+#  include <string.h>
+
 #  include <debug/assertions.h>   // Missing include.
 #elif defined(_LIBCPP_VERSION)
 #endif
