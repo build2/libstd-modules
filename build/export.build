@@ -4,7 +4,7 @@
 
 $out_root/:
 {
-  include buildfile
+  include libstd-modules/
 }
 
-export $($out_root/:export_target)
+export $($out_root/libstd-modules/:export_target)

@@ -1,11 +1,11 @@
-// file      : std-core.mxx -*- C++ -*-
+// file      : libstd-modules/std-core.mxx -*- C++ -*-
 // copyright : Copyright (c) 2014-2017 Code Synthesis Ltd
 // license   : MIT; see accompanying LICENSE file
 
 // For some standard library implementations we need to pre-include certain
 // headers to prevent their exporting.
 
-#include "std-detect.hxx"
+#include <libstd-modules/std-detect.hxx>
 
 #if   defined(_MSC_VER)
 /*
@@ -20,6 +20,7 @@
 #  include <errno.h>
 #  include <wchar.h>          // struct tm forward declaration.
 #  include <stdio.h>
+#  include <stdlib.h>
 #  include <string.h>
 #  include <strings.h>
 #  include <sys/types.h>

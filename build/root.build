@@ -9,5 +9,6 @@ using cxx
 if! $cxx.features.modules
   warn 'c++ compiler does not support modules'
 
+hxx{*}: extension = hxx
 mxx{*}: extension = mxx
 cxx{*}: extension = cxx

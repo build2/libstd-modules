@@ -1,10 +1,10 @@
-// file      : std-regex.mxx -*- C++ -*-
+// file      : libstd-modules/std-regex.mxx -*- C++ -*-
 // copyright : Copyright (c) 2014-2017 Code Synthesis Ltd
 // license   : MIT; see accompanying LICENSE file
 
 // Pre-includes.
 //
-#include "std-detect.hxx"
+#include <libstd-modules/std-detect.hxx>
 
 #if   defined(_MSC_VER)
 #  include <algorithm>
