@@ -83,10 +83,10 @@ else
   bmia{$regex}:     mxx{std-regex} bmia{$core} bmia{$io}
   bmia{$threading}: mxx{std-threading} bmia{$core}
 
-  mxx{std-core}@./:      cc.module_name = std.core
-  mxx{std-io}@./:        cc.module_name = std.io
-  mxx{std-regex}@./:     cc.module_name = std.regex
-  mxx{std-threading}@./: cc.module_name = std.threading
+  mxx{std-core}@./:      cxx.module_name = std.core
+  mxx{std-io}@./:        cxx.module_name = std.io
+  mxx{std-regex}@./:     cxx.module_name = std.regex
+  mxx{std-threading}@./: cxx.module_name = std.threading
 
   cxx.poptions =+ "-I$out_root" "-I$src_root"
   liba{std-modules}: cxx.export.poptions = "-I$out_root" "-I$src_root"
