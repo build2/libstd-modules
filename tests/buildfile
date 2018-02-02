@@ -14,5 +14,5 @@ else
   import libs = libstd-modules%liba{std-modules}
 
   exe{driver}: cxx{driver} $libs
-  exe{driver}: test.output = test.out
+  exe{driver}: file{test.out}: test.stdout = true
 }
