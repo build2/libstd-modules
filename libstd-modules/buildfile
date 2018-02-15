@@ -15,6 +15,8 @@ else
   # should we have used headers (i.e., whatever object code generated from
   # those headers would have ended up in each executable/library).
   #
+  # @@ TODO: it should become a module interface-only library.
+  #
   ./: liba{std-modules}
 
   # Building of the modules gets rather compiler-specific.
@@ -57,7 +59,7 @@ else
 
     # @@ Doesn't work if installed so we don't bother installing it. But we
     #    still install dummy std-modules; the idea is to link a dummy and
-    #    (try) to use Microsoft-shipped .ifc's.
+    #    (try) to use Microsoft-shipped .ifc's?
     #
     $dir/liba{std}: install = false
 
