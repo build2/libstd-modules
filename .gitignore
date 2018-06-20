@@ -1,17 +1,20 @@
+.bdep/
+
 # Compiler/linker output.
 #
 *.d
+*.t
+*.i
 *.ii
 *.o
 *.obj
-*.nms
-*.pcm
-*.ifc
 *.so
 *.dll
 *.a
 *.lib
 *.exp
+*.pdb
+*.ilk
 *.exe
 *.exe.dlls/
 *.exe.manifest
