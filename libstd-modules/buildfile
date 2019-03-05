@@ -70,16 +70,6 @@ else
 
   liba{std-modules}: hxx{*}
 
-  # @@ TMP: use utility library instead?
-  #
-  if ($cxx.target.class == 'linux' || $cxx.target.class == 'bsd')
-    cxx.coptions += -fPIC
-
-  # Clang with libc++ (sometimes) needs it -- go figure.
-  #
-  if ($cxx.target.class != "windows")
-    cxx.libs += -lpthread
-
   bmia{$core}:      mxx{std-core}
   bmia{$io}:        mxx{std-io} bmia{$core}
   bmia{$regex}:     mxx{std-regex} bmia{$core} bmia{$io}
@@ -90,10 +80,25 @@ else
   mxx{std-regex}@./:     cxx.module_name = std.regex
   mxx{std-threading}@./: cxx.module_name = std.threading
 
+  # Build options.
+  #
   cxx.poptions =+ "-I$out_root" "-I$src_root"
+
+  # @@ TMP: use utility library instead?
+  #
+  if ($cxx.target.class == 'linux' || $cxx.target.class == 'bsd')
+    cxx.coptions += -fPIC
+
+  # Clang with libc++ (sometimes) needs it -- go figure.
+  #
+  if ($cxx.target.class != "windows")
+    cxx.libs += -lpthread
+
+  # Export options.
+  #
   liba{std-modules}: cxx.export.poptions = "-I$out_root" "-I$src_root"
 
   # Install into the libstd-modules/ subdirectory of, say, /usr/include/.
   #
-  {hxx mxx}{*}: install = include/$project/
+  {hxx mxx}{*}: install = include/libstd-modules/
 }
