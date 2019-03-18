@@ -1,6 +1,6 @@
 : 1
 name: libstd-modules
-version: 0.10.0-a.0.z
+version: 0.10.0
 project: build2
 summary: Standard C++ library module interfaces
 license: MIT
