@@ -1,6 +1,6 @@
 : 1
 name: libstd-modules
-version: 0.10.0
+version: 0.11.0-a.0.z
 project: build2
 summary: Standard C++ library module interfaces
 license: MIT
@@ -19,5 +19,5 @@ build-include: *-clang_5.**
 build-include: *-clang_6.**
 build-exclude: **            ; Requires C++ modules support.
 requires: c++20
-depends: * build2 >= 0.9.0
-depends: * bpkg >= 0.9.0
+depends: * build2 >= 0.10.0
+depends: * bpkg >= 0.10.0
