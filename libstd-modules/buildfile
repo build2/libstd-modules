@@ -21,51 +21,54 @@ else
 
   # Building of the modules gets rather compiler-specific.
   #
-  if ($cxx.id.type == 'clang')
+  switch $cxx.id.type
   {
-    # Use the naming scheme expected by -fprebuilt-module-path=. Can also be
-    # specified with -fmodule-file=.
-    #
-    core      = std.core.pcm
-    io        = std.io.pcm
-    regex     = std.regex.pcm
-    threading = std.threading.pcm
+    case 'clang'
+    {
+      # Use the naming scheme expected by -fprebuilt-module-path=. Can also be
+      # specified with -fmodule-file=.
+      #
+      core      = std.core.pcm
+      io        = std.io.pcm
+      regex     = std.regex.pcm
+      threading = std.threading.pcm
 
-    liba{std-modules}: bmia{$core $io $regex $threading}
+      liba{std-modules}: bmia{$core $io $regex $threading}
 
-    export_target = $out_base/liba{std-modules}
-  }
-  elif ($cxx.id.type == 'msvc')
-  {
-    # Use the naming scheme expected by /module:stdIfcDir. Note that IFCPATH
-    # would require an extra directory (x64 or x86; e.g., x64/Release/).
-    #
-    # @@ Currently VC looks in Release regardless of /MD or /MDd.
-    #
-    dir       = release/
-    core      = $dir/std.core.ifc
-    io        = $dir/std.io.ifc
-    regex     = $dir/std.regex.ifc
-    threading = $dir/std.threading.ifc
+      export_target = $out_base/liba{std-modules}
+    }
+    case 'msvc'
+    {
+      # Use the naming scheme expected by /module:stdIfcDir. Note that IFCPATH
+      # would require an extra directory (x64 or x86; e.g., x64/Release/).
+      #
+      # @@ Currently VC looks in Release regardless of /MD or /MDd.
+      #
+      dir       = release/
+      core      = $dir/std.core.ifc
+      io        = $dir/std.io.ifc
+      regex     = $dir/std.regex.ifc
+      threading = $dir/std.threading.ifc
 
-    bmia{$core $io $regex $threading}: fsdir{$dir}
+      bmia{$core $io $regex $threading}: fsdir{$dir}
 
-    # VC expects to find std.lib next to the .ifc's. Make it the real one
-    # while std-modules -- a dummy.
-    #
-    ./: $dir/liba{std}
-    $dir/liba{std}: bmia{$core $io $regex $threading}
-    liba{std-modules}: cxx{dummy.cxx}
+      # VC expects to find std.lib next to the .ifc's. Make it the real one
+      # while std-modules -- a dummy.
+      #
+      ./: $dir/liba{std}
+      $dir/liba{std}: bmia{$core $io $regex $threading}
+      liba{std-modules}: cxx{dummy.cxx}
 
-    # @@ Doesn't work if installed so we don't bother installing it. But we
-    #    still install dummy std-modules; the idea is to link a dummy and
-    #    (try) to use Microsoft-shipped .ifc's?
-    #
-    $dir/liba{std}: install = false
+      # @@ Doesn't work if installed so we don't bother installing it. But we
+      #    still install dummy std-modules; the idea is to link a dummy and
+      #    (try) to use Microsoft-shipped .ifc's?
+      #
+      $dir/liba{std}: install = false
 
-    # Include std-modules to trigger install.
-    #
-    export_target = $out_base/$dir/liba{std} $out_base/liba{std-modules}
+      # Include std-modules to trigger install.
+      #
+      export_target = $out_base/$dir/liba{std} $out_base/liba{std-modules}
+    }
   }
 
   liba{std-modules}: hxx{*}
