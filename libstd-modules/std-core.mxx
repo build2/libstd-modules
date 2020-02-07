@@ -1,5 +1,4 @@
 // file      : libstd-modules/std-core.mxx -*- C++ -*-
-// copyright : Copyright (c) 2014-2019 Code Synthesis Ltd
 // license   : MIT; see accompanying LICENSE file
 
 // For some standard library implementations we need to pre-include certain
