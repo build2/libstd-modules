@@ -19,5 +19,5 @@ build-include: *-clang_5.**
 build-include: *-clang_6.**
 build-exclude: **            ; Requires C++ modules support.
 requires: c++20
-depends: * build2 >= 0.12.0
-depends: * bpkg >= 0.12.0
+depends: * build2 >= 0.13.0-
+depends: * bpkg >= 0.13.0-
