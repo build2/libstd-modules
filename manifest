@@ -11,7 +11,7 @@ url: https://build2.org
 doc-url: https://build2.org/doc.xhtml
 src-url: https://git.build2.org/cgit/libstd-modules/tree/
 email: users@build2.org
-build-email: builds@build2.org
+build-warning-email: builds@build2.org
 builds: all
 build-exclude: *-msvc_15.0** ; Broken C++ modules support.
 build-include: *-msvc_15.**
